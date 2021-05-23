@@ -51,3 +51,13 @@ func TestStream(t *testing.T) {
 
 	})
 }
+
+func BenchmarkStream(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		s := Of([]int{3, 3, 5, 2, 34})
+		var result []int
+		s.ToSlice(&result)
+	}
+}
+// BenchmarkStream-8   	 1131432	      1029 ns/op	     600 B/op	      22 allocs/op
+// BenchmarkStream-8   	 1210950	      1099 ns/op	     568 B/op	      21 allocs/op

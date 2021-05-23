@@ -19,10 +19,7 @@ func (stream Stream) FirstN(n int, ptrOfSlice interface{}) {
 	next := stream.Iterator()
 	index := 0
 	for item, ok := next(); ok && index < n; item, ok = next() {
-		if index >= cap {
-			slice, cap = grow(slice)
-		}
-		slice.Index(index).Set(reflect.ValueOf(item))
+		slice = reflect.Append(slice, reflect.ValueOf(item))
 		index++
 	}
 
@@ -45,30 +42,14 @@ func (stream Stream) Count() (cnt int) {
 func (stream Stream) ToSlice(ptrOfSlice interface{}) {
 	res := reflect.ValueOf(ptrOfSlice)
 	slice := reflect.Indirect(res)
-
 	cap := slice.Cap()
 	res.Elem().Set(slice.Slice(0, cap))
 
 	next := stream.Iterator()
 	index := 0
 	for item, ok := next(); ok; item, ok = next() {
-		if index >= cap {
-			slice, cap = grow(slice)
-		}
-		slice.Index(index).Set(reflect.ValueOf(item))
+		slice = reflect.Append(slice, reflect.ValueOf(item))
 		index++
 	}
 	res.Elem().Set(slice.Slice(0, index))
-}
-
-func grow(s reflect.Value) (v reflect.Value, newCap int) {
-	cap := s.Cap()
-	if cap == 0 {
-		cap = 1
-	} else {
-		cap *= 2
-	}
-	newSlice := reflect.MakeSlice(s.Type(), cap, cap)
-	reflect.Copy(newSlice, s)
-	return newSlice, cap
 }
