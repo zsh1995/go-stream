@@ -4,7 +4,6 @@ go 1.16
 
 require (
 	github.com/Pallinder/go-randomdata v1.2.0
-	github.com/ahmetb/go-linq/v3 v3.2.0
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/sumory/baseN4go v0.0.0-20141208021650-8d01e8450859 // indirect
