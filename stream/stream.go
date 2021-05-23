@@ -58,13 +58,13 @@ func OfSlice(s interface{}) Stream {
 // OfString 从 字符串 构造流
 func OfString(v string) Stream {
 	runes := []rune(v)
-	len := len(runes)
+	size := len(runes)
 
 	return Stream{
 		iterate: func() Iterator {
 			index := 0
 			return func() (item interface{}, ok bool) {
-				ok = index < len
+				ok = index < size
 				if ok {
 					item = runes[index]
 					index++

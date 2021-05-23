@@ -46,6 +46,11 @@ func TestQuestion2Sub2(t *testing.T) {
 	t.Log(answer)
 }
 
+func BenchmarkQuestion2Sub2(b *testing.B) {
+	answer := stream_test.Question2Sub2(strList)
+	b.Log(answer)
+}
+
 func TestQuestion3Sub1(t *testing.T) {
 	answer := stream_test.Question3Sub1(str, 20)
 	t.Log(answer)

@@ -28,6 +28,6 @@ func Question2Sub2(list []string) string {
 		ta := a.(tmp)
 		tb := b.(tmp)
 		return int(tb.count - ta.count)
-	}).First().(string)
-	return m
+	}).First().(tmp)
+	return m.a
 }

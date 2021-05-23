@@ -22,7 +22,7 @@ func Question1Sub2(employees []*Employee) (result []*Employee) {
 	stream.OfSlice(employees).Sorted(func(a, b interface{}) int {
 		return int(a.(*Employee).Id - b.(*Employee).Id)
 	}).FirstN(10, &result)
-	return nil
+	return
 }
 
 // - Q3: - 输入 employees，对于没有手机号为0的数据，随机填写一个
